@@ -1,5 +1,33 @@
 import ReactDOM from 'react-dom'
 
+const Header = ({course}) => {
+  return (
+    <h1>{course}</h1>
+  )
+}
+
+const Content = ({parts}) => {
+  return (
+    <>
+      {parts && parts.map(el => <Part part={el.name} exercises={el.exercises} />)}
+    </>
+  )
+}
+
+const Part = ({part,exercises}) => {
+  return (
+    <p>{part} {exercises}</p>
+  )
+}
+const Total = ({parts}) => {
+  
+  const totalExercises = parts.reduce((a,b) => a + b.exercises,0)
+  return (
+    <p>Number of exercises {totalExercises}</p>
+  )
+}
+
+
 const App = () => {
   const course = {
     name: 'Half Stack application development',
@@ -19,35 +47,6 @@ const App = () => {
     ]
   }
 
- 
-  
-
-  const Header = ({course}) => {
-    return (
-      <h1>{course}</h1>
-    )
-  }
-
-  const Content = ({parts}) => {
-    return (
-      <>
-        {parts && parts.map(el => <Part part={el.name} exercises={el.exercises} />)}
-      </>
-    )
-  }
-  
-  const Part = ({part,exercises}) => {
-    return (
-      <p>{part} {exercises}</p>
-    )
-  }
-  const Total = ({parts}) => {
-    
-    const totalExercises = parts.reduce((a,b) => a + b.exercises,0)
-    return (
-      <p>Number of exercises {totalExercises}</p>
-    )
-  }
   return (
     <div>
       <Header course={course.name} />
